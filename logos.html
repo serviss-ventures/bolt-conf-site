@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bolt.conf — Logo Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Syncopate:wght@400;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Sora:wght@100;200;300;400;500;600;700;800&family=Unbounded:wght@200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0A0A09;
+    color: #EDDCC6;
+    min-height: 100vh;
+    padding: 60px 40px;
+  }
+
+  .page-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(237,220,198,0.4);
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .concepts {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .concept {
+    background: #10100F;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .concept:hover {
+    border-color: rgba(43,166,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  .concept-label {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(237,220,198,0.25);
+  }
+
+  .concept-sublabel {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    font-size: 11px;
+    color: rgba(237,220,198,0.15);
+  }
+
+  /* === CONCEPT 1: Elegant Serif === */
+  .logo-1 {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+  .logo-1 .bolt {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 82px;
+    color: #EDDCC6;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .logo-1 .conf {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 82px;
+    color: #2BA6FF;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  /* === CONCEPT 2: Aurora Gradient === */
+  .logo-2 {
+    display: flex;
+    align-items: baseline;
+  }
+  .logo-2 .bolt {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 86px;
+    letter-spacing: -3px;
+    line-height: 1;
+    background: linear-gradient(135deg, #2BA6FF 0%, #2ECFB0 35%, #E8A838 70%, #E06B3A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .logo-2 .conf {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: 86px;
+    color: #EDDCC6;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  /* === CONCEPT 3: Stacked Architectural === */
+  .logo-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .logo-3 .bolt {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    color: #EDDCC6;
+    letter-spacing: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-3 .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2BA6FF, transparent);
+    margin: 12px 0;
+  }
+  .logo-3 .conf {
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: #2BA6FF;
+    letter-spacing: 18px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* === CONCEPT 4: Neon Glow === */
+  .concept-4 { background: #08080A; }
+  .logo-4 {
+    display: flex;
+    align-items: baseline;
+  }
+  .logo-4 .bolt {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 84px;
+    color: #EDDCC6;
+    letter-spacing: -2px;
+    line-height: 1;
+    text-shadow:
+      0 0 10px rgba(237,220,198,0.3),
+      0 0 40px rgba(43,166,255,0.15);
+  }
+  .logo-4 .dot {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 84px;
+    color: #2BA6FF;
+    line-height: 1;
+    text-shadow:
+      0 0 10px rgba(43,166,255,0.8),
+      0 0 30px rgba(43,166,255,0.5),
+      0 0 60px rgba(43,166,255,0.3),
+      0 0 100px rgba(43,166,255,0.15);
+    position: relative;
+  }
+  .logo-4 .dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #2BA6FF;
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.6;
+  }
+  .logo-4 .conf {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 84px;
+    color: rgba(237,220,198,0.7);
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow:
+      0 0 10px rgba(237,220,198,0.15),
+      0 0 40px rgba(43,166,255,0.08);
+  }
+
+  /* === CONCEPT 5: Monogram + Wordmark === */
+  .logo-5 {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .logo-5 .monogram {
+    width: 72px;
+    height: 72px;
+    border: 2.5px solid #EDDCC6;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(237,220,198,0.03);
+  }
+  .logo-5 .monogram .letter {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: #EDDCC6;
+    line-height: 1;
+    margin-left: 2px;
+  }
+  .logo-5 .monogram .dot-accent {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background: #2BA6FF;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(43,166,255,0.5);
+  }
+  .logo-5 .wordmark {
+    display: flex;
+    align-items: baseline;
+  }
+  .logo-5 .bolt {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 52px;
+    color: #EDDCC6;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .logo-5 .conf {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: 52px;
+    color: rgba(237,220,198,0.5);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  /* === CONCEPT 6: Kinetic Contrast === */
+  .logo-6 {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+  .logo-6 .bolt {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 78px;
+    color: #EDDCC6;
+    letter-spacing: -4px;
+    line-height: 1;
+    text-transform: lowercase;
+  }
+  .logo-6 .dot {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 78px;
+    color: #2BA6FF;
+    line-height: 1;
+  }
+  .logo-6 .conf {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 78px;
+    color: rgba(237,220,198,0.65);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-left: -2px;
+  }
+
+  /* === CONCEPT 7: Period Break === */
+  .logo-7 {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .logo-7 .bolt {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 80px;
+    color: #EDDCC6;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+  .logo-7 .period {
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, #2BA6FF, #2ECFB0);
+    border-radius: 50%;
+    margin: 0 6px;
+    align-self: flex-end;
+    margin-bottom: 14px;
+    box-shadow: 0 0 12px rgba(43,166,255,0.4);
+  }
+  .logo-7 .conf {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: 80px;
+    color: rgba(237,220,198,0.5);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  /* === CONCEPT 8: Festival Poster === */
+  .concept-8 {
+    grid-column: 1 / -1;
+    min-height: 420px;
+    background: #10100F;
+    position: relative;
+  }
+  .concept-8::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 50%, rgba(43,166,255,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 80% 50%, rgba(232,168,56,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .logo-8 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 1;
+    position: relative;
+  }
+  .logo-8 .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #2BA6FF;
+  }
+  .logo-8 .main {
+    display: flex;
+    align-items: baseline;
+  }
+  .logo-8 .bolt {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 120px;
+    color: #EDDCC6;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+  .logo-8 .conf {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 120px;
+    color: #2BA6FF;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .logo-8 .tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(237,220,198,0.35);
+    margin-top: 8px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .concepts { grid-template-columns: 1fr; }
+    .concept-8 { grid-column: 1; }
+    .concept { padding: 40px 30px; min-height: 260px; }
+    .logo-1 .bolt, .logo-1 .conf { font-size: 52px; }
+    .logo-2 .bolt, .logo-2 .conf { font-size: 56px; }
+    .logo-3 .bolt { font-size: 48px; }
+    .logo-3 .conf { font-size: 20px; }
+    .logo-4 .bolt, .logo-4 .dot, .logo-4 .conf { font-size: 54px; }
+    .logo-5 .bolt, .logo-5 .conf { font-size: 36px; }
+    .logo-5 .monogram { width: 56px; height: 56px; }
+    .logo-5 .monogram .letter { font-size: 28px; }
+    .logo-6 .bolt, .logo-6 .dot, .logo-6 .conf { font-size: 50px; }
+    .logo-7 .bolt, .logo-7 .conf { font-size: 52px; }
+    .logo-8 .bolt, .logo-8 .conf { font-size: 72px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">bolt.conf &mdash; Logo Concepts</div>
+
+<div class="concepts">
+
+  <!-- 1: Elegant Serif -->
+  <div class="concept">
+    <span class="concept-label">01 / Elegant Serif</span>
+    <div class="logo-1">
+      <span class="bolt">bolt</span><span class="conf">.conf</span>
+    </div>
+    <span class="concept-sublabel">Playfair Display 800 + DM Sans 300</span>
+  </div>
+
+  <!-- 2: Aurora Gradient -->
+  <div class="concept">
+    <span class="concept-label">02 / Aurora Gradient</span>
+    <div class="logo-2">
+      <span class="bolt">bolt</span><span class="conf">.conf</span>
+    </div>
+    <span class="concept-sublabel">Sora 800 gradient + Sora 300</span>
+  </div>
+
+  <!-- 3: Stacked Architectural -->
+  <div class="concept">
+    <span class="concept-label">03 / Stacked Architectural</span>
+    <div class="logo-3">
+      <span class="bolt">BOLT</span>
+      <div class="divider"></div>
+      <span class="conf">.CONF</span>
+    </div>
+    <span class="concept-sublabel">Syncopate 700 + 400, blue gradient divider</span>
+  </div>
+
+  <!-- 4: Neon Glow -->
+  <div class="concept concept-4">
+    <span class="concept-label">04 / Neon Glow</span>
+    <div class="logo-4">
+      <span class="bolt">bolt</span><span class="dot">.</span><span class="conf">conf</span>
+    </div>
+    <span class="concept-sublabel">Outfit 700/300, blue glow on period</span>
+  </div>
+
+  <!-- 5: Monogram + Wordmark -->
+  <div class="concept">
+    <span class="concept-label">05 / Monogram + Wordmark</span>
+    <div class="logo-5">
+      <div class="monogram">
+        <span class="letter">b</span>
+        <span class="dot-accent"></span>
+      </div>
+      <div class="wordmark">
+        <span class="bolt">bolt</span><span class="conf">.conf</span>
+      </div>
+    </div>
+    <span class="concept-sublabel">Sora 700/300 + rounded monogram icon</span>
+  </div>
+
+  <!-- 6: Kinetic Contrast -->
+  <div class="concept">
+    <span class="concept-label">06 / Kinetic Contrast</span>
+    <div class="logo-6">
+      <span class="bolt">bolt</span><span class="dot">.</span><span class="conf">conf</span>
+    </div>
+    <span class="concept-sublabel">Unbounded 900 + Instrument Serif italic</span>
+  </div>
+
+  <!-- 7: Period Break -->
+  <div class="concept">
+    <span class="concept-label">07 / Period Break</span>
+    <div class="logo-7">
+      <span class="bolt">bolt</span>
+      <div class="period"></div>
+      <span class="conf">conf</span>
+    </div>
+    <span class="concept-sublabel">Plus Jakarta Sans 800/300, gradient period dot</span>
+  </div>
+
+  <!-- 8: Festival Poster (Hero treatment) -->
+  <div class="concept concept-8">
+    <span class="concept-label">08 / Festival Poster</span>
+    <div class="logo-8">
+      <span class="eyebrow">The First Developer Festival</span>
+      <div class="main">
+        <span class="bolt">bolt</span><span class="conf">.conf</span>
+      </div>
+      <span class="tagline">Golden Gate Park &bull; San Francisco &bull; September 2026</span>
+    </div>
+    <span class="concept-sublabel">Playfair Display 900 + italic 400, full lockup</span>
+  </div>
+
+</div>
+
+</body>
+</html>
