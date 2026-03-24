@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bolt.conf — The First Developer Festival</title>
+<meta name="description" content="bolt.conf is the first developer festival. September 2026, Golden Gate Park, San Francisco. Two days of live builds, workshops, and hackathons. Then the sun goes down.">
+<meta property="og:title" content="bolt.conf — The First Developer Festival">
+<meta property="og:description" content="September 2026. Golden Gate Park, San Francisco. Two days of sessions + After Dark festival.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syncopate:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #10100F;
+    --bg-deep: #08080A;
+    --bg-elevated: #181817;
+    --bg-card: rgba(255,255,255,0.04);
+    --bg-card-hover: rgba(255,255,255,0.07);
+    --bg-card-border: rgba(255,255,255,0.08);
+    --cream: #EDDCC6;
+    --cream-soft: rgba(237,220,198,0.7);
+    --cream-muted: rgba(237,220,198,0.4);
+    --cream-faint: rgba(237,220,198,0.2);
+    --cream-dim: rgba(237,220,198,0.08);
+    --blue: #2BA6FF;
+    --blue-deep: #1B8FE8;
+    --blue-glow: rgba(43,166,255,0.15);
+    --blue-border: rgba(43,166,255,0.2);
+    --teal: #2ECFB0;
+    --amber: #E8A838;
+    --orange: #E06B3A;
+    --sunset: #D94F2B;
+    --body: #ADADAD;
+    --muted: #686765;
+    --dim: #3A3836;
+    --divider: rgba(255,255,255,0.06);
+    --glass: rgba(16,16,15,0.8);
+    --glass-border: rgba(255,255,255,0.1);
+    --logo: 'Outfit', -apple-system, sans-serif;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'Syncopate', sans-serif;
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══ LOGO WORDMARK ═══ */
+  .logo-mark {
+    display: inline-flex;
+    align-items: baseline;
+    text-decoration: none;
+  }
+  .logo-mark .logo-bolt {
+    font-family: var(--logo);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(237,220,198,0.3), 0 0 40px rgba(43,166,255,0.15);
+  }
+  .logo-mark .logo-dot {
+    font-family: var(--logo);
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(43,166,255,0.8), 0 0 30px rgba(43,166,255,0.5), 0 0 60px rgba(43,166,255,0.3);
+    position: relative;
+  }
+  .logo-mark .logo-conf {
+    font-family: var(--logo);
+    font-weight: 300;
+    color: rgba(237,220,198,0.7);
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(237,220,198,0.15), 0 0 40px rgba(43,166,255,0.08);
+  }
+  .logo-nav { font-size: 22px; }
+  .logo-hero { font-size: 72px; letter-spacing: -2px; margin-bottom: 48px; }
+  .logo-footer { font-size: 28px; }
+
+  @media (min-width: 901px) {
+    .logo-hero { font-size: 96px; letter-spacing: -3px; }
+  }
+
+  /* ═══ NAV ═══ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s var(--ease);
+  }
+  nav.scrolled {
+    padding: 14px 48px;
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--cream-muted);
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .btn-register {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    background: var(--blue);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+  }
+  .btn-register:hover {
+    background: var(--blue-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px rgba(43,166,255,0.3);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 28px;
+    background: transparent;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--cream-faint);
+    border-radius: 100px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+  }
+  .btn-outline:hover {
+    border-color: var(--cream-soft);
+    background: rgba(237,220,198,0.05);
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 100vh;
+    padding: 0 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 600px; height: 600px;
+    top: -10%; right: -5%;
+    background: radial-gradient(circle, rgba(43,166,255,0.18) 0%, rgba(46,207,176,0.08) 50%, transparent 70%);
+  }
+  .hero-orb-2 {
+    width: 500px; height: 500px;
+    top: 20%; left: -10%;
+    background: radial-gradient(circle, rgba(232,168,56,0.1) 0%, rgba(224,107,58,0.05) 50%, transparent 70%);
+    animation-delay: 2s;
+  }
+  .hero-orb-3 {
+    width: 400px; height: 400px;
+    bottom: 10%; right: 25%;
+    background: radial-gradient(circle, rgba(46,207,176,0.08) 0%, rgba(43,166,255,0.04) 50%, transparent 70%);
+    animation-delay: 4s;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -15px) scale(1.03); }
+    66% { transform: translate(-10px, 10px) scale(0.97); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+  .hero-tagline {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+  .hero h1 .accent {
+    color: var(--blue);
+    font-style: italic;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    margin-bottom: 48px;
+  }
+  .hero-meta-item strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .hero-meta-item {
+    font-size: 15px;
+    color: var(--cream-soft);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* ═══ TRUSTED BY BAR ═══ */
+  .trusted-bar {
+    padding: 48px 48px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .trusted-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .trusted-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .trusted-logos {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+    color: var(--cream-muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .trusted-logos span { opacity: 0.3; }
+
+  /* ═══ SECTION SHARED ═══ */
+  section { padding: 120px 48px; }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .section-title .accent {
+    color: var(--blue);
+    font-style: italic;
+  }
+  .section-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--body);
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  /* ═══ ABOUT ═══ */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 14px;
+    padding: 30px 26px;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s var(--ease-out);
+  }
+  .stat-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--blue-border);
+    transform: translateY(-3px);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ═══ GRADIENT DIVIDER ═══ */
+  .section-divider {
+    height: 1px;
+    margin: 0 48px;
+    background: linear-gradient(90deg, transparent 0%, var(--blue-border) 20%, rgba(46,207,176,0.2) 50%, rgba(232,168,56,0.15) 80%, transparent 100%);
+  }
+
+  /* ═══ SPEAKERS ═══ */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 56px;
+  }
+  .speaker-featured {
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s var(--ease-out);
+  }
+  .speaker-featured:hover { transform: scale(0.985); }
+  .speaker-featured.sf-1 {
+    background: linear-gradient(135deg, rgba(43,166,255,0.25) 0%, rgba(46,207,176,0.15) 50%, rgba(232,168,56,0.1) 100%);
+    border: 1px solid rgba(43,166,255,0.15);
+  }
+  .speaker-featured.sf-2 {
+    background: linear-gradient(135deg, rgba(232,168,56,0.2) 0%, rgba(224,107,58,0.15) 50%, rgba(46,207,176,0.1) 100%);
+    border: 1px solid rgba(232,168,56,0.15);
+  }
+  .speaker-featured.sf-3 {
+    background: linear-gradient(135deg, rgba(46,207,176,0.2) 0%, rgba(43,166,255,0.15) 50%, rgba(27,143,232,0.1) 100%);
+    border: 1px solid rgba(46,207,176,0.15);
+  }
+  .speaker-featured.sf-4 {
+    background: linear-gradient(135deg, rgba(224,107,58,0.2) 0%, rgba(232,168,56,0.15) 50%, rgba(43,166,255,0.1) 100%);
+    border: 1px solid rgba(224,107,58,0.12);
+  }
+  .sf-info { position: relative; z-index: 2; }
+  .sf-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .sf-role {
+    font-size: 13px;
+    color: var(--cream-muted);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .sf-photo {
+    width: 170px; height: 210px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .speakers-more {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .speaker-small {
+    text-align: center;
+    padding: 24px 16px;
+    border-radius: 14px;
+    transition: background 0.2s;
+  }
+  .speaker-small:hover { background: var(--bg-card); }
+  .speaker-small-photo {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.3s var(--ease-out);
+  }
+  .speaker-small:hover .speaker-small-photo { transform: scale(1.06); }
+  .speaker-small-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .speaker-small-role {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .speakers-cta {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 16px;
+    color: var(--muted);
+    font-style: italic;
+    font-family: var(--serif);
+  }
+
+  /* ═══ SCHEDULE ═══ */
+  .schedule-tabs {
+    display: flex;
+    gap: 4px;
+    margin: 40px 0 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 100px;
+    padding: 4px;
+    width: fit-content;
+  }
+  .schedule-tab {
+    padding: 10px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    border-radius: 100px;
+    transition: all 0.25s var(--ease);
+  }
+  .schedule-tab.active {
+    color: #fff;
+    background: var(--blue);
+    font-weight: 600;
+  }
+  .schedule-tab:not(.active):hover { color: var(--cream-soft); }
+
+  .schedule-content { display: none; }
+  .schedule-content.active { display: block; }
+
+  .schedule-day-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--cream);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .schedule-row {
+    display: grid;
+    grid-template-columns: 170px 1fr auto;
+    gap: 24px;
+    padding: 18px 16px;
+    border-bottom: 1px solid var(--divider);
+    align-items: center;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .schedule-row:hover { background: var(--bg-card); }
+  .schedule-time {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .schedule-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream-soft);
+  }
+  .schedule-row:hover .schedule-title { color: var(--cream); }
+  .schedule-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .schedule-tag.main { background: var(--blue-glow); color: var(--blue); }
+  .schedule-tag.workshop { background: rgba(46,207,176,0.12); color: var(--teal); }
+  .schedule-tag.partner { background: rgba(232,168,56,0.12); color: var(--amber); }
+  .schedule-tag.hackathon { background: rgba(224,107,58,0.12); color: var(--orange); }
+  .schedule-tag.festival { background: rgba(237,220,198,0.06); color: var(--muted); }
+  .schedule-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .schedule-tag.main::before { background: var(--blue); }
+  .schedule-tag.workshop::before { background: var(--teal); }
+  .schedule-tag.partner::before { background: var(--amber); }
+  .schedule-tag.hackathon::before { background: var(--orange); }
+  .schedule-tag.festival::before { background: var(--muted); }
+
+  /* ═══ SPONSORS ═══ */
+  .sponsors { background: var(--bg-elevated); }
+  .sponsor-tier { margin-top: 48px; }
+  .sponsor-tier-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .sponsor-logos {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .sponsor-logo {
+    width: 180px; height: 80px;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .sponsor-logo:hover {
+    border-color: var(--blue-border);
+    background: var(--bg-card-hover);
+  }
+  .sponsor-logo.large { width: 240px; height: 100px; }
+
+  .sponsor-cta {
+    margin-top: 64px;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(43,166,255,0.06) 0%, rgba(46,207,176,0.04) 50%, rgba(232,168,56,0.03) 100%);
+    border: 1px solid var(--blue-border);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sponsor-cta h3 {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .sponsor-cta p {
+    font-size: 15px;
+    color: var(--body);
+  }
+
+  /* ═══ FAQ ═══ */
+  .faq-list {
+    max-width: 640px;
+    margin-top: 48px;
+  }
+  .faq-item { border-bottom: 1px solid var(--divider); }
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--cream-soft);
+    text-align: left;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--cream); }
+  .faq-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--bg-card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: all 0.3s var(--ease);
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    border-color: var(--blue-border);
+    color: var(--blue);
+    background: var(--blue-glow);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
+  }
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 24px;
+  }
+  .faq-answer p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--body);
+    font-weight: 400;
+  }
+  .faq-answer a { color: var(--blue); text-decoration: none; font-weight: 500; }
+
+  /* ═══ FOOTER ═══ */
+  footer {
+    padding: 100px 48px 48px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--divider);
+  }
+  .footer-glow {
+    position: absolute;
+    bottom: -200px; right: -100px;
+    width: 600px; height: 500px;
+    background: radial-gradient(circle, rgba(43,166,255,0.08) 0%, rgba(46,207,176,0.04) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .footer-top {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .footer-meta {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer-headline {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 40px;
+    max-width: 600px;
+    position: relative;
+  }
+  .footer-headline .accent { color: var(--blue); font-style: italic; }
+  .footer-cta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 80px;
+    position: relative;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--divider);
+    position: relative;
+  }
+  .footer-bottom-left {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .footer-bottom-left a { color: var(--blue); text-decoration: none; }
+  .footer-bottom-right {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-bottom-right a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom-right a:hover { color: var(--cream-soft); }
+
+  /* ═══ MOBILE ═══ */
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--cream); margin: 4px 0; border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav.scrolled { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    section { padding: 80px 24px; }
+    .hero { padding: 0 24px; }
+    .hero h1 { font-size: 42px; letter-spacing: -1px; }
+    .hero-meta { flex-direction: column; gap: 16px; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+    .speakers-grid { grid-template-columns: 1fr; }
+    .speakers-more { grid-template-columns: 1fr 1fr; }
+    .speaker-featured { min-height: 240px; padding: 24px; }
+    .sf-photo { width: 120px; height: 150px; }
+    .schedule-row { grid-template-columns: 1fr; gap: 8px; }
+    .schedule-time { font-size: 13px; }
+    .sponsor-cta { flex-direction: column; text-align: center; gap: 24px; }
+    .trusted-bar { padding: 32px 24px; }
+    .trusted-inner { flex-direction: column; gap: 8px; }
+    footer { padding: 60px 24px 32px; }
+    .footer-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-cta { flex-direction: column; }
+    .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+
+  /* ═══ ANIMATIONS ═══ */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo-mark logo-nav"><span class="logo-bolt">bolt</span><span class="logo-dot">.</span><span class="logo-conf">conf</span></a>
+  <div class="nav-links">
+    <a href="#speakers">Speakers</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#sponsors">Sponsors</a>
+    <a href="#faq">FAQ</a>
+    <a href="#register" class="btn-register">Register</a>
+  </div>
+  <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-tagline fade-up">September 2026 &bull; Golden Gate Park, SF</div>
+    <div class="logo-mark logo-hero fade-up stagger-1"><span class="logo-bolt">bolt</span><span class="logo-dot">.</span><span class="logo-conf">conf</span></div>
+    <h1 class="fade-up stagger-2">The first developer<br><span class="accent">festival</span></h1>
+    <div class="hero-meta fade-up stagger-3">
+      <div class="hero-meta-item">
+        <strong>When</strong>
+        September 2026
+      </div>
+      <div class="hero-meta-item">
+        <strong>Where</strong>
+        Golden Gate Park, SF
+      </div>
+      <div class="hero-meta-item">
+        <strong>Format</strong>
+        2 days + After Dark
+      </div>
+    </div>
+    <div class="hero-cta fade-up stagger-4">
+      <a href="#register" class="btn-register" style="padding: 14px 40px; font-size: 15px;">Register Interest</a>
+      <a href="#schedule" class="btn-outline">View Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<div class="trusted-bar">
+  <div class="trusted-inner">
+    <div class="trusted-label">Trusted by teams at</div>
+    <div class="trusted-logos">
+      Google <span>&middot;</span> Intel <span>&middot;</span> Accenture <span>&middot;</span> Salesforce <span>&middot;</span> NBC <span>&middot;</span> Shopify <span>&middot;</span> Cloudflare <span>&middot;</span> Meta
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="section-eyebrow fade-up">About the Event</div>
+    <h2 class="section-title fade-up stagger-1">What is<br><span class="accent">bolt.conf</span>?</h2>
+    <p class="section-desc fade-up stagger-2">
+      Not slides in a convention center. An outdoor festival in Golden Gate Park
+      where developers, product leaders, and AI practitioners build, learn, and
+      connect. Two days of live build sessions, partner stages, hands-on workshops,
+      and hackathon challenges. Then the sun goes down and the festival begins.
+    </p>
+  </div>
+  <div class="about-right">
+    <div class="stat-card fade-up stagger-1">
+      <div class="stat-num">7M+</div>
+      <div class="stat-label">Bolt users worldwide</div>
+    </div>
+    <div class="stat-card fade-up stagger-2">
+      <div class="stat-num">4&ndash;5K</div>
+      <div class="stat-label">Expected attendees</div>
+    </div>
+    <div class="stat-card fade-up stagger-3">
+      <div class="stat-num">2 days</div>
+      <div class="stat-label">Plus After Dark festival</div>
+    </div>
+    <div class="stat-card fade-up stagger-4">
+      <div class="stat-num">1st</div>
+      <div class="stat-label">Developer festival ever</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="section-eyebrow fade-up">Speakers</div>
+  <h2 class="section-title fade-up stagger-1">Meet our<br>speakers</h2>
+  <p class="section-desc fade-up stagger-2">Hear from the people building the future of software. More speakers announced soon.</p>
+
+  <div class="speakers-grid">
+    <div class="speaker-featured sf-1 fade-up">
+      <div class="sf-info">
+        <div class="sf-name">Eric<br>Simons</div>
+        <div class="sf-role">CEO &amp; Co-founder,<br>bolt.new</div>
+      </div>
+      <div class="sf-photo">Photo</div>
+    </div>
+    <div class="speaker-featured sf-2 fade-up stagger-1">
+      <div class="sf-info">
+        <div class="sf-name">Alex<br>Rickabaugh</div>
+        <div class="sf-role">CTO &amp; Co-founder,<br>bolt.new</div>
+      </div>
+      <div class="sf-photo">Photo</div>
+    </div>
+    <div class="speaker-featured sf-3 fade-up">
+      <div class="sf-info">
+        <div class="sf-name">Speaker<br>TBA</div>
+        <div class="sf-role">To be announced</div>
+      </div>
+      <div class="sf-photo">Photo</div>
+    </div>
+    <div class="speaker-featured sf-4 fade-up stagger-1">
+      <div class="sf-info">
+        <div class="sf-name">Speaker<br>TBA</div>
+        <div class="sf-role">To be announced</div>
+      </div>
+      <div class="sf-photo">Photo</div>
+    </div>
+  </div>
+
+  <div class="speakers-more">
+    <div class="speaker-small fade-up"><div class="speaker-small-photo">TBA</div><div class="speaker-small-name">TBA</div><div class="speaker-small-role">Coming soon</div></div>
+    <div class="speaker-small fade-up stagger-1"><div class="speaker-small-photo">TBA</div><div class="speaker-small-name">TBA</div><div class="speaker-small-role">Coming soon</div></div>
+    <div class="speaker-small fade-up stagger-2"><div class="speaker-small-photo">TBA</div><div class="speaker-small-name">TBA</div><div class="speaker-small-role">Coming soon</div></div>
+    <div class="speaker-small fade-up stagger-3"><div class="speaker-small-photo">TBA</div><div class="speaker-small-name">TBA</div><div class="speaker-small-role">Coming soon</div></div>
+  </div>
+  <p class="speakers-cta fade-up">More speakers coming soon.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-eyebrow fade-up">Schedule</div>
+  <h2 class="section-title fade-up stagger-1">Agenda</h2>
+  <p class="section-desc fade-up stagger-2">Live builds, workshops, partner stages, and more. Find sessions that fit your role and interests.</p>
+
+  <div class="schedule-tabs">
+    <button class="schedule-tab active" data-tab="day1">Day 1</button>
+    <button class="schedule-tab" data-tab="day2">Day 2</button>
+    <button class="schedule-tab" data-tab="afterdark">After Dark</button>
+  </div>
+
+  <div class="schedule-content active" id="tab-day1">
+    <h3 class="schedule-day-title">Day 1</h3>
+    <div class="schedule-row"><div class="schedule-time">8:30 am</div><div class="schedule-title">Gates open &amp; breakfast</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">9:30 &ndash; 10:30 am</div><div class="schedule-title">Opening keynote: The future of software creation</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">10:45 &ndash; 11:30 am</div><div class="schedule-title">Live build: From prompt to production in 30 minutes</div><span class="schedule-tag workshop">Workshop</span></div>
+    <div class="schedule-row"><div class="schedule-time">10:45 &ndash; 11:30 am</div><div class="schedule-title">Design systems in the age of AI</div><span class="schedule-tag partner">Partner Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">11:45 am &ndash; 12:15 pm</div><div class="schedule-title">Fireside chat: Engineering-approved AI</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">12:30 &ndash; 1:30 pm</div><div class="schedule-title">Lunch &amp; festival grounds</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">1:30 &ndash; 2:15 pm</div><div class="schedule-title">Product roadmap: What's next for bolt.new</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">1:30 &ndash; 4:30 pm</div><div class="schedule-title">Hackathon: Build the impossible</div><span class="schedule-tag hackathon">Hackathon</span></div>
+    <div class="schedule-row"><div class="schedule-time">2:30 &ndash; 3:15 pm</div><div class="schedule-title">Enterprise prototyping: Kill your Figma subscription</div><span class="schedule-tag workshop">Workshop</span></div>
+    <div class="schedule-row"><div class="schedule-time">3:30 &ndash; 4:15 pm</div><div class="schedule-title">Panel: AI and the developer experience</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">4:30 &ndash; 5:00 pm</div><div class="schedule-title">Day 1 closing &amp; hackathon demos</div><span class="schedule-tag main">Main Stage</span></div>
+  </div>
+
+  <div class="schedule-content" id="tab-day2">
+    <h3 class="schedule-day-title">Day 2</h3>
+    <div class="schedule-row"><div class="schedule-time">8:30 am</div><div class="schedule-title">Gates open &amp; breakfast</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">9:30 &ndash; 10:30 am</div><div class="schedule-title">Keynote: The state of AI-powered development</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">10:45 &ndash; 11:30 am</div><div class="schedule-title">Workshop: Building with design system agents</div><span class="schedule-tag workshop">Workshop</span></div>
+    <div class="schedule-row"><div class="schedule-time">10:45 &ndash; 11:30 am</div><div class="schedule-title">Partner showcase: The AI development stack</div><span class="schedule-tag partner">Partner Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">11:45 am &ndash; 12:15 pm</div><div class="schedule-title">WebContainer deep dive: The runtime that changed everything</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">12:30 &ndash; 1:30 pm</div><div class="schedule-title">Lunch &amp; sponsor activations</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">1:30 &ndash; 2:15 pm</div><div class="schedule-title">Panel: From prototype to production at scale</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">2:30 &ndash; 3:15 pm</div><div class="schedule-title">Workshop: Advanced prompt coding techniques</div><span class="schedule-tag workshop">Workshop</span></div>
+    <div class="schedule-row"><div class="schedule-time">3:30 &ndash; 4:30 pm</div><div class="schedule-title">Closing keynote &amp; what's ahead</div><span class="schedule-tag main">Main Stage</span></div>
+    <div class="schedule-row"><div class="schedule-time">5:00 &ndash; 6:00 pm</div><div class="schedule-title">Cocktail hour &amp; transition to After Dark</div><span class="schedule-tag festival">Festival</span></div>
+  </div>
+
+  <div class="schedule-content" id="tab-afterdark">
+    <h3 class="schedule-day-title">After Dark</h3>
+    <div class="schedule-row"><div class="schedule-time">6:00 pm</div><div class="schedule-title">Doors open &amp; cocktails</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">6:30 &ndash; 7:15 pm</div><div class="schedule-title">Opening act</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">7:30 &ndash; 8:30 pm</div><div class="schedule-title">Main act</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">8:45 &ndash; 9:45 pm</div><div class="schedule-title">Headliner</div><span class="schedule-tag festival">Festival</span></div>
+    <div class="schedule-row"><div class="schedule-time">9:45 pm</div><div class="schedule-title">Last call &amp; late-night food</div><span class="schedule-tag festival">Festival</span></div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="sponsors" id="sponsors">
+  <div class="section-eyebrow fade-up">Sponsors</div>
+  <h2 class="section-title fade-up stagger-1">Our sponsors</h2>
+
+  <div class="sponsor-tier fade-up">
+    <div class="sponsor-tier-label">Official Partners</div>
+    <div class="sponsor-logos">
+      <div class="sponsor-logo large">Partner 1</div>
+      <div class="sponsor-logo large">Partner 2</div>
+      <div class="sponsor-logo large">Partner 3</div>
+    </div>
+  </div>
+  <div class="sponsor-tier fade-up">
+    <div class="sponsor-tier-label">Platinum</div>
+    <div class="sponsor-logos">
+      <div class="sponsor-logo large">Platinum 1</div>
+      <div class="sponsor-logo large">Platinum 2</div>
+      <div class="sponsor-logo large">Platinum 3</div>
+    </div>
+  </div>
+  <div class="sponsor-tier fade-up">
+    <div class="sponsor-tier-label">Gold</div>
+    <div class="sponsor-logos">
+      <div class="sponsor-logo">Gold 1</div><div class="sponsor-logo">Gold 2</div><div class="sponsor-logo">Gold 3</div>
+      <div class="sponsor-logo">Gold 4</div><div class="sponsor-logo">Gold 5</div><div class="sponsor-logo">Gold 6</div>
+    </div>
+  </div>
+  <div class="sponsor-tier fade-up">
+    <div class="sponsor-tier-label">Silver</div>
+    <div class="sponsor-logos">
+      <div class="sponsor-logo">Silver 1</div><div class="sponsor-logo">Silver 2</div><div class="sponsor-logo">Silver 3</div>
+      <div class="sponsor-logo">Silver 4</div><div class="sponsor-logo">Silver 5</div>
+    </div>
+  </div>
+
+  <div class="sponsor-cta fade-up">
+    <div>
+      <h3>Become a sponsor</h3>
+      <p>Put your brand in front of the people building the future of software.</p>
+    </div>
+    <a href="mailto:sales@stackblitz.com" class="btn-register">Get in touch</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-eyebrow fade-up">FAQ</div>
+  <h2 class="section-title fade-up stagger-1">FAQs</h2>
+  <div class="faq-list">
+    <div class="faq-item fade-up"><button class="faq-question">What is bolt.conf?<span class="faq-icon">+</span></button><div class="faq-answer"><p>bolt.conf is the first developer festival. A two-day outdoor conference plus evening festival in Golden Gate Park, San Francisco. Live build sessions, partner stages, workshops, hackathons, and headliner musical performances. Think Outside Lands for builders.</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">Where is it?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Golden Gate Park, San Francisco. Exact venue details and map will be shared closer to the event.</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">When is it?<span class="faq-icon">+</span></button><div class="faq-answer"><p>September 2026. Exact dates will be announced soon. The event spans two full days of programming (8:30 AM to 5:00 PM) plus an evening festival (6:00 PM to 9:45 PM on Day 2).</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">How do I get tickets?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Registration will open soon. Sign up with your email to be the first to know when tickets go on sale.</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">Is there a code of conduct?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. bolt.conf is committed to providing a safe, inclusive experience for everyone. Our full code of conduct will be published ahead of the event.</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">What is After Dark?<span class="faq-icon">+</span></button><div class="faq-answer"><p>After Dark is the evening festival on Day 2. Once daytime programming wraps, the venue transforms for three musical acts, late-night food, cocktails, and a fully branded celebration. 6:00 PM to 9:45 PM.</p></div></div>
+    <div class="faq-item fade-up"><button class="faq-question">Can I sponsor bolt.conf?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. We offer multiple sponsorship tiers from Community ($10K) to Official Partner (invite only). Every sponsor gets an interactive activation zone. Contact <a href="mailto:sales@stackblitz.com">sales@stackblitz.com</a> for the prospectus.</p></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="register">
+  <div class="footer-glow"></div>
+  <div class="footer-top">
+    <div class="logo-mark logo-footer"><span class="logo-bolt">bolt</span><span class="logo-dot">.</span><span class="logo-conf">conf</span></div>
+    <div class="footer-meta">September 2026</div>
+    <div class="footer-meta">Golden Gate Park, San Francisco</div>
+  </div>
+  <h2 class="footer-headline">The first developer<br><span class="accent">festival</span></h2>
+  <div class="footer-cta">
+    <a href="mailto:sales@stackblitz.com" class="btn-register" style="padding: 14px 40px; font-size: 15px;">Register Interest</a>
+    <a href="mailto:sales@stackblitz.com" class="btn-outline">Sponsorship Inquiry</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">For inquiries, email <a href="mailto:sales@stackblitz.com">sales@stackblitz.com</a></div>
+    <div class="footer-bottom-right">
+      <a href="https://bolt.new">bolt.new</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Code of Conduct</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  document.querySelectorAll('.schedule-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.schedule-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.schedule-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
