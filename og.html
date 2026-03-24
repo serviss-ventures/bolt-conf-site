@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #10100F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .orb1 {
+    position: absolute;
+    width: 500px; height: 500px;
+    top: -100px; right: -50px;
+    background: radial-gradient(circle, rgba(43,166,255,0.15) 0%, rgba(46,207,176,0.07) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .orb2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    bottom: -80px; left: -50px;
+    background: radial-gradient(circle, rgba(232,168,56,0.1) 0%, rgba(224,107,58,0.05) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .content { position: relative; z-index: 2; }
+  .eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #2BA6FF;
+    margin-bottom: 32px;
+  }
+  .logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 120px;
+    line-height: 1;
+    margin-bottom: 36px;
+  }
+  .logo .bolt {
+    font-weight: 700;
+    color: #EDDCC6;
+  }
+  .logo .dot {
+    font-weight: 700;
+    color: #2BA6FF;
+  }
+  .logo .conf {
+    font-weight: 300;
+    color: rgba(237,220,198,0.7);
+  }
+  .tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: #EDDCC6;
+    line-height: 1.2;
+  }
+  .tagline em {
+    color: #2BA6FF;
+    font-style: italic;
+  }
+  .meta {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(237,220,198,0.4);
+    margin-top: 28px;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="content">
+    <div class="eyebrow">September 2026 &bull; Golden Gate Park, SF</div>
+    <div class="logo"><span class="bolt">bolt</span><span class="dot">.</span><span class="conf">conf</span></div>
+    <div class="tagline">The first developer <em>festival</em></div>
+    <div class="meta">2 DAYS OF SESSIONS + AFTER DARK FESTIVAL</div>
+  </div>
+</body>
+</html>

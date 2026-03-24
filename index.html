@@ -7,7 +7,15 @@
 <meta name="description" content="bolt.conf is the first developer festival. September 2026, Golden Gate Park, San Francisco. Two days of live builds, workshops, and hackathons. Then the sun goes down.">
 <meta property="og:title" content="bolt.conf — The First Developer Festival">
 <meta property="og:description" content="September 2026. Golden Gate Park, San Francisco. Two days of sessions + After Dark festival.">
+<meta property="og:image" content="https://boltconf.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://boltconf.com">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="bolt.conf — The First Developer Festival">
+<meta name="twitter:description" content="September 2026. Golden Gate Park, San Francisco. Two days of sessions + After Dark festival.">
+<meta name="twitter:image" content="https://boltconf.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syncopate:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -783,29 +791,56 @@
   .mobile-menu-btn span { display: block; width: 20px; height: 2px; background: var(--cream); margin: 4px 0; border-radius: 2px; }
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav.scrolled { padding: 12px 24px; }
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
-    section { padding: 80px 24px; }
-    .hero { padding: 0 24px; }
-    .hero h1 { font-size: 42px; letter-spacing: -1px; }
-    .hero-meta { flex-direction: column; gap: 16px; }
+    section { padding: 64px 20px; }
+    .section-title { font-size: 36px; letter-spacing: -1px; margin-bottom: 16px; }
+    .section-desc { font-size: 15px; }
+    .hero { padding: 0 20px; }
+    .hero-tagline { font-size: 9px; letter-spacing: 3px; margin-bottom: 24px; }
+    .logo-hero { font-size: 56px; letter-spacing: -1.5px; margin-bottom: 32px; }
+    .hero h1 { font-size: 36px; letter-spacing: -1px; margin-bottom: 32px; }
+    .hero-meta { flex-direction: row; gap: 24px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+    .hero-meta-item { font-size: 13px; }
+    .hero-meta-item strong { font-size: 8px; letter-spacing: 2px; }
+    .hero-cta { flex-direction: row; gap: 12px; }
+    .hero-cta .btn-register { padding: 12px 28px; font-size: 14px; }
+    .hero-cta .btn-outline { padding: 12px 24px; font-size: 14px; }
     .about { grid-template-columns: 1fr; gap: 40px; }
+    .about-right { gap: 10px; }
+    .stat-card { padding: 22px 18px; }
+    .stat-num { font-size: 30px; }
+    .stat-label { font-size: 12px; }
     .speakers-grid { grid-template-columns: 1fr; }
     .speakers-more { grid-template-columns: 1fr 1fr; }
-    .speaker-featured { min-height: 240px; padding: 24px; }
-    .sf-photo { width: 120px; height: 150px; }
-    .schedule-row { grid-template-columns: 1fr; gap: 8px; }
-    .schedule-time { font-size: 13px; }
-    .sponsor-cta { flex-direction: column; text-align: center; gap: 24px; }
-    .trusted-bar { padding: 32px 24px; }
-    .trusted-logos { gap: 28px; }
-    .trusted-logos .brand { font-size: 16px; }
-    footer { padding: 60px 24px 32px; }
-    .footer-top { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .footer-cta { flex-direction: column; }
+    .speaker-featured { min-height: 200px; padding: 20px; }
+    .sf-name { font-size: 24px; }
+    .sf-photo { width: 100px; height: 130px; }
+    .schedule-tabs { width: 100%; justify-content: center; }
+    .schedule-tab { padding: 8px 20px; font-size: 13px; }
+    .schedule-day-title { font-size: 24px; }
+    .schedule-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 12px; }
+    .schedule-time { font-size: 12px; }
+    .schedule-title { font-size: 14px; }
+    .sponsor-logos { gap: 10px; }
+    .sponsor-logo { width: 140px; height: 64px; font-size: 10px; }
+    .sponsor-logo.large { width: 160px; height: 72px; }
+    .sponsor-cta { flex-direction: column; text-align: center; gap: 20px; padding: 32px 24px; }
+    .sponsor-cta h3 { font-size: 24px; }
+    .trusted-bar { padding: 28px 20px; }
+    .trusted-label { font-size: 9px; margin-bottom: 20px; }
+    .trusted-logos { gap: 20px; }
+    .trusted-logos .brand { font-size: 15px; }
+    .faq-question { font-size: 15px; padding: 20px 0; }
+    footer { padding: 48px 20px 28px; }
+    .footer-top { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 36px; }
+    .footer-headline { font-size: 32px; margin-bottom: 28px; }
+    .footer-cta { flex-direction: column; gap: 12px; margin-bottom: 48px; }
+    .footer-cta .btn-register { padding: 12px 32px !important; font-size: 14px !important; }
     .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .section-divider { margin: 0 20px; }
   }
 
   /* ═══ ANIMATIONS ═══ */
